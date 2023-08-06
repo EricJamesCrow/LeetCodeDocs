@@ -1,0 +1,39 @@
+# Contains Duplicate
+
+**Difficulty**: <span style={{ color: '#5CB85C', backgroundColor: '#DFF0D8', padding: '3px 5px', borderRadius: '4px' }}>Easy</span>
+
+**Link:** https://leetcode.com/problems/contains-duplicate
+
+## Description 
+
+Given an integer array `nums`, return `true` if any value appears at **least twice** in the array, and return `false` if every element is distinct.
+
+**Example 1:**
+
+**Input:** `nums = [1,2,3,1]`  
+**Output:** `true`  
+
+**Example 2:**
+
+**Input:** `nums = [1,2,3,4]`  
+**Output:** `false`  
+
+## Optimal Solution O(n)
+
+This problem was quite easy for me to figure out since I had already learned how to solve Two Sum optimally.
+All you need to do is iterate through nums, check to see if the current number is in the hash map, and if it isn't, add that number to the hash map, and then continue iterating.
+If the number is in the hash map, then you know there are at least two numbers and can return true.
+If no duplicate numbers are found, return false.
+
+```python
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        hashMap = {}
+        for index, num in enumerate(nums):
+            if num in hashMap:
+                return True
+            hashMap[num] = index
+        return False
+```
+
+

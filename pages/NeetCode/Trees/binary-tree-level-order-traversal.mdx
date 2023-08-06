@@ -1,0 +1,69 @@
+# Binary Tree Level Order Traversal
+
+**Difficulty:** <span style={{ color: '#F0AD4E', backgroundColor: '#FAEBCC', padding: '3px 5px', borderRadius: '4px' }}>Medium</span>
+
+**Link:** https://leetcode.com/problems/binary-tree-level-order-traversal/
+
+## Description 
+
+Given the `root` of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
+**Example 1:**
+
+<img src="https://assets.leetcode.com/uploads/2021/02/19/tree1.jpg" alt="Tree" />
+
+
+**Input:** `nums = [1,2,3,1]`  
+**Output:** `true`  
+
+**Example 2:**
+
+**Input:** `nums = [1,2,3,4]`  
+**Output:** `false`  
+
+## Optimal Solution
+
+I learned how to implement Breadth First Search after reviewing the NeetCode solution for this problem.
+I was able to solve other Tree problems that required Depth First Search on my own, but had to look up the solution for this one.
+After reviewing NeetCode, I learned how to do BFS and found myself able to immediately solve seven other similar problems using this method,
+which were:
+
+* [Average of Levels in Binary Tree](./Additional_Problems/average-of-levels-in-binary-tree)
+* [Find Largest Value in Each Tree Row](./Additional_Problems/find-largest-value-in-each-tree-row)
+* [Find Bottom Left Tree Value](./Additional_Problems/find-bottom-left-tree-value)
+* [Binary Tree Level Order Traversal II](./Additional_Problems/binary-tree-level-order-traversal-ii)
+* [Binary Tree Zigzag Level Order Traversal](./Additional_Problems/binary-tree-zigzag-level-order-traversal)
+* [Populating Next Right Pointers in Each Node](./Additional_Problems/populating-next-right-pointers-in-each-node)
+* [Populating Next Right Pointers in Each Node II](./Additional_Problems/populating-next-right-pointers-in-each-node-ii)
+
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+
+        queue = deque()
+        result = []
+
+        queue.append(root)
+        while queue:
+            current_result = []
+            for _ in range(len(queue)):
+                curr = queue.popleft()
+                current_result.append(curr.val)
+                if curr.left:
+                    queue.append(curr.left)
+                if curr.right:
+                    queue.append(curr.right)
+            result.append(current_result)
+        return result
+```
+
+

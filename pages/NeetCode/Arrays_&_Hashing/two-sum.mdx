@@ -1,0 +1,62 @@
+# Two Sum 
+
+**Difficulty**: <span style={{ color: '#5CB85C', backgroundColor: '#DFF0D8', padding: '3px 5px', borderRadius: '4px' }}>Easy</span>
+
+**Link:** https://leetcode.com/problems/two-sum/
+
+## Description 
+
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+
+**Example 1:**
+
+**Input:** `nums = [2,7,11,15], target = 9`  
+**Output:** `[0,1]`  
+**Explanation:** `nums[0] + nums[1] == 9`, so the indices returned are `[0,1]`.
+
+**Example 2:**
+
+**Input:** `nums = [3,2,4], target = 6`  
+**Output:** `[1,2]`  
+**Explanation:** `nums[1] + nums[2] == 6`, so the indices returned are `[1,2]`.
+
+
+## First Approach O(n<sup>2</sup>)
+
+This was one of the very first LeetCode problems I attempted.
+I figured this one out through trial and error. I did not have any sort of methodical approach at the time, so I was pretty proud of myself, especially since I was new to LeetCode.
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in range(len(nums)):
+            for x in range(i+1, len(nums)):
+                if nums[i]+nums[x] == target:
+                    return [i,x]
+```
+
+## Optimal Solution O(n)
+
+After reviewing NeetCode, I learned how I could use hashing to make this problem run in O(n), which is an optimal solution.
+I also learned how I can use enumerate to grab both the index and the value from an array.
+I found this technique to be very helpful in solving similar problems.
+First, you want to find the difference by subtracting the current number with the target.
+Then, you check to see if the difference is in the hashmap.
+If it is, then you know you have found the two numbers that make up the sum of the target, which means you can return the indexes of the those two numbers.
+If the difference is not found, then you will add the current number and index to the hashmap, and then continue iterating through the array.
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashMap = {}
+        for index, num in enumerate(nums):
+            diff = target - num
+            if diff in hashMap:
+                return [hashMap[diff], index]
+            hashMap[num] = index
+        return
+```
+
+
