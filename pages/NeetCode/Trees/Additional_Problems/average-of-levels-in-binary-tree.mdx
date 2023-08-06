@@ -4,6 +4,8 @@
 
 **Link:** https://leetcode.com/problems/average-of-levels-in-binary-tree/
 
+**Last updated:** 8/6/2023
+
 ## Description 
 
 Given the `root` of a binary tree, return the average value of the nodes on each level in the form of an array. Answers within 10-5 of the actual answer will be accepted.
@@ -28,6 +30,7 @@ Hence return [3, 14.5, 11].
 
 ## Solution
 
+This problem was quite easy. Just implement BFS but instead of appending the `current_result` array to `result`, append the average of the numbers in `current_result`.
 
 ```python
 # Definition for a binary tree node.

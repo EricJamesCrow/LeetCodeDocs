@@ -4,6 +4,8 @@
 
 **Link:** https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
 
+**Last updated:** 8/6/2023
+
 ## Description 
 
 Given the `root`of a binary tree, return the bottom-up level order traversal of its nodes' values. (i.e., from left to right, level by level from leaf to root).
@@ -27,6 +29,8 @@ Given the `root`of a binary tree, return the bottom-up level order traversal of 
 **Output:** `[]`  
 
 ## Solution
+
+Very similar to my solution for the first problem. The only thing that is changed that instead of appending the `result` array, we use `result.insert(0, current_result)` instead in order to satisfy the requirement of returning the bottom-up level order traversal of the nodes.
 
 
 ```python

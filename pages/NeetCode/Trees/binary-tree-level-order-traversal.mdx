@@ -4,6 +4,8 @@
 
 **Link:** https://leetcode.com/problems/binary-tree-level-order-traversal/
 
+**Last updated:** 8/6/2023
+
 ## Description 
 
 Given the `root` of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
@@ -21,7 +23,7 @@ Given the `root` of a binary tree, return the level order traversal of its nodes
 **Input:** `nums = [1,2,3,4]`  
 **Output:** `false`  
 
-## Optimal Solution
+## Background
 
 I learned how to implement Breadth First Search after reviewing the NeetCode solution for this problem.
 I was able to solve other Tree problems that required Depth First Search on my own, but had to look up the solution for this one.
@@ -36,6 +38,16 @@ which were:
 * [Populating Next Right Pointers in Each Node](./Additional_Problems/populating-next-right-pointers-in-each-node)
 * [Populating Next Right Pointers in Each Node II](./Additional_Problems/populating-next-right-pointers-in-each-node-ii)
 
+## Solution
+
+First, we check to see if root exists. If it does not, we return an empty array.
+We then initialize a `queue` with `deque()` as well as an empty array named `result`.
+We then append the `queue` with the `root` node.
+We then start a while loop for while the queue is populated, in which we initialize an empty array named `current_result`.
+We iterate through the queue, grabbing the the most current item using `queue.popleft()`, and we then append that item's value to the `current_result` array.
+We then do two conditional checks for whether or not the current item has a left or right node. If it has either, it appends them to the queue.
+At the end of the iteration for the while loop, we append all of the results collected from the for loop to the `result` array.
+At the end of the loop, we return `result`.
 
 ```python
 # Definition for a binary tree node.
