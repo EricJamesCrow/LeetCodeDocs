@@ -2,7 +2,7 @@
 
 This is a web app I created to document my LeetCode progress. The template used for this was [Nextra](https://nextra.site).
 
-[**Live Site →**](https://leet-code-docs.vercel.app)
+[**Live Site →**](https://leetcode.crowdevelopment.io)
 
 
 ## Local Development
