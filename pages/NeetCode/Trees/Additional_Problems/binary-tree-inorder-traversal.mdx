@@ -1,0 +1,86 @@
+# Binary Tree Inorder Traversal
+
+**Difficulty**: <span style={{ color: '#5CB85C', backgroundColor: '#DFF0D8', padding: '3px 5px', borderRadius: '4px' }}>Easy</span>
+
+**Link:** https://leetcode.com/problems/binary-tree-inorder-traversal/
+
+
+## Description 
+
+Given the `root`of a binary tree, return the inorder traversal of its nodes' values.
+
+**Example 1:**
+
+<img src="https://assets.leetcode.com/uploads/2020/09/15/inorder_1.jpg" alt="Inorder" />
+
+
+**Input:** `root = [1,null,2,3]`  
+**Output:** `[1,3,2]` 
+
+**Example 2:**
+
+**Input:** `root = []`  
+**Output:** `[]` 
+
+**Example 3:**
+
+**Input:** `root = [1]`  
+**Output:** `[[1]]`   
+
+## Solution #1
+
+This was my first attempt. I have not practiced recursion problems in awhile so I was not sure how to make a concise answer, but apparently this works!
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return
+        res = []
+        self.inorder(root.left, res)
+        res.append(root.val)
+        self.inorder(root.right, res)
+        return res
+
+    def inorder(self, root, res):
+        if not root:
+            return    
+        self.inorder(root.left, res)
+        res.append(root.val)
+        self.inorder(root.right, res)
+        return res
+```
+
+
+## Solution #2 
+
+After reviewing the NeetCode video, I realized I could make a nested function and then still be able to access the `res` array I created as a global variable, which gives me the concise code I was looking for.
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+
+        def inorder(root):
+            if not root:
+                return
+            inorder(root.left)
+            res.append(root.val)
+            inorder(root.right)
+        
+        inorder(root)
+        return res
+```
+
