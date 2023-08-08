@@ -1,0 +1,51 @@
+# Kth Smallest Element in a BST
+
+**Difficulty:** <span style={{ color: '#F0AD4E', backgroundColor: '#FAEBCC', padding: '3px 5px', borderRadius: '4px' }}>Medium</span>
+
+**Link:** https://leetcode.com/problems/kth-smallest-element-in-a-bst
+
+## Description 
+
+Given the `root` of a binary search tree, and an integer `k`, return the `kth` smallest value (**1-indexed**) of all the values of the nodes in the tree.
+
+**Example 1:**
+
+<img src="https://assets.leetcode.com/uploads/2021/01/28/kthtree1.jpg" alt="Kth Tree 1" />
+
+
+**Input:** `root = [3,1,4,null,2], k = 1`  
+**Output:** `1`  
+
+**Example 2:**
+
+<img src="https://assets.leetcode.com/uploads/2021/01/28/kthtree2.jpg" alt="Kth Tree 2" />
+
+**Input:** `root = [5,3,6,2,4,null,null,1], k = 3`  
+**Output:** `3`  
+
+## Solution
+
+All I did was slightly modify my answer for *[Binary Tree Inorder Traversal](./Additional_Problems/binary-tree-inorder-traversal)*.
+
+Instead of returning just the array, I returned the index of the array minus one (since it is 1-indexed).
+
+Solved this very quickly since I had just done *[Binary Tree Inorder Traversal](./Additional_Problems/binary-tree-inorder-traversal)*.
+
+
+```python
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        res = []
+
+        def inorder(root):
+            if not root:
+                return
+            inorder(root.left)
+            res.append(root.val)
+            inorder(root.right)
+        
+        inorder(root)
+        return res[k-1]
+```
+
+
