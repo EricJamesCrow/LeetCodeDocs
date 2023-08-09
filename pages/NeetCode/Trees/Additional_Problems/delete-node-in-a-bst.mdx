@@ -1,0 +1,73 @@
+# Delete Node in a BST
+
+**Difficulty:** <span style={{ color: '#F0AD4E', backgroundColor: '#FAEBCC', padding: '3px 5px', borderRadius: '4px' }}>Medium</span>
+
+**Link:** https://leetcode.com/problems/delete-node-in-a-bst
+
+
+## Description 
+
+Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the **root node reference** (*possibly updated*) of the BST.
+
+Basically, the deletion can be divided into two stages:
+
+Search for a node to remove.
+If the node is found, delete the node.
+**Example 1:**
+
+<img src="https://assets.leetcode.com/uploads/2020/09/04/del_node_1.jpg" alt="Tree" />
+
+
+**Input:** `root = [5,3,6,2,4,null,7], key = 3`  
+**Output:** `[5,4,6,2,null,null,7]`  
+**Explanation:** Given key to delete is 3. So we find the node with value 3 and delete it.
+One valid answer is [5,4,6,2,null,null,7], shown in the above BST.
+Please notice that another valid answer is [5,2,6,null,4,null,7] and it's also accepted.
+<img src="https://assets.leetcode.com/uploads/2020/09/04/del_node_supp.jpg" alt="Tree" />
+
+**Example 2:**
+
+**Input:** `root = [5,3,6,2,4,null,7], key = 0`  
+**Output:** `[5,3,6,2,4,null,7]`  
+**Explanation:** `The tree does not contain a node with value = 0.`
+
+**Example 3:**
+
+**Input:** `root = [], key = 0`  
+**Output:** `[]`  
+
+## Solution
+
+Implemented this solution after watching NeetCode's video on BST insert and removal in his DSA beginner's course.
+
+```python
+class Solution:
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+        if not root:
+            return None
+
+        if key > root.val:
+            root.right = self.deleteNode(root.right, key)
+        elif key < root.val:
+            root.left = self.deleteNode(root.left, key)
+        else:
+            if not root.left:
+                return root.right
+            elif not root.right:
+                return root.left
+            else:
+                minNode = self.minValueNode(root.right)
+                root.val = minNode.val
+                root.right = self.deleteNode(root.right, minNode.val)
+        return root
+
+
+
+    def minValueNode(self, root):
+        curr = root
+        while curr and curr.left:
+            curr = curr.left
+        return curr
+```
+
+
